@@ -1,0 +1,118 @@
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 100;
+    src: url("../Font/eot/Vazirmatn-FD-Thin.eot");
+    src: url("../Font/eot/Vazirmatn-FD-Thin.eot") format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-Thin.woff") format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-Thin.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-Thin.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 200;
+    src: url("../Font/eot/Vazirmatn-FD-ExtraLight.eot");
+    src: url("../Font/eot/Vazirmatn-FD-ExtraLight.eot")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-ExtraLight.woff")
+            format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-ExtraLight.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-ExtraLight.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 300;
+    src: url("../Font/eot/Vazirmatn-FD-Light.eot");
+    src: url("../Font/eot/Vazirmatn-FD-Light.eot") format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-Light.woff") format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-Light.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../Font/eot/Vazirmatn-FD-Regular.eot");
+    src: url("../Font/eot/Vazirmatn-FD-Regular.eot") format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-Regular.woff")
+            format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-Regular.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 500;
+    src: url("../Font/eot/Vazirmatn-FD-Medium.eot");
+    src: url("../Font/eot/Vazirmatn-FD-Medium.eot") format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-Medium.woff")
+            format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-Medium.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 600;
+    src: url("../Font/eot/Vazirmatn-FD-SemiBold.eot");
+    src: url("../Font/eot/Vazirmatn-FD-SemiBold.eot")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-SemiBold.woff")
+            format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-SemiBold.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-SemiBold.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 700;
+    src: url("../Font/eot/Vazirmatn-FD-Bold.eot");
+    src: url("../Font/eot/Vazirmatn-FD-Bold.eot") format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-Bold.woff")
+            format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-Bold.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 800;
+    src: url("../Font/eot/Vazirmatn-FD-ExtraBold.eot");
+    src: url("../Font/eot/Vazirmatn-FD-ExtraBold.eot")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-ExtraBold.woff")
+            format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-ExtraBold.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-ExtraBold.ttf") format("truetype");
+}
+@font-face {
+    font-family: Vazir_Fa;
+    font-style: normal;
+    font-weight: 900;
+    src: url("../Font/eot/Vazirmatn-FD-Black.eot");
+    src: url("../Font/eot/Vazirmatn-FD-Black.eot") format("embedded-opentype"),
+        /* IE6-8 */ url("../Font/woff/Vazirmatn-FD-Black.woff")
+            format("woff"),
+        format("embedded-opentype"),
+        url("../Font/woff2/Vazirmatn-FD-Black.woff2") format("woff2"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url("../Font/ttf/Vazirmatn-FD-Black.ttf") format("truetype");
+}

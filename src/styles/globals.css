@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("../Assests/Vazir/Vazir_En/Css/Vazir_En.css");
+@import url("../Assests/Vazir/Vazir_Fa/Css/Vazir_Fa.css");
+
 @layer components {
-    .NavIcon{
-        @apply w-8 h-8
+    .NavIcon {
+        @apply w-6 h-6;
     }
+}
+#__next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }

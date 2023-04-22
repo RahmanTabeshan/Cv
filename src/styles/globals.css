@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,12 +11,15 @@
         @apply w-6 h-6;
     }
     body {
-        @apply font-vazir
+        @apply !font-vazir
     }
 }
+
 #__next {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    font-family: "Vazir_Fa";
+    padding: 10px 0 ;
 }

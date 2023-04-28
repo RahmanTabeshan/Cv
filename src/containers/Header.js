@@ -18,7 +18,7 @@ const Header = () => {
 
     return (
         
-        <header className="flex items-center gap-4 overflow-hidden">
+        <header className="relative flex items-center gap-4 overflow-hidden px-5 py-2 z-[1]">
             <NavBar
                 className={
                     load

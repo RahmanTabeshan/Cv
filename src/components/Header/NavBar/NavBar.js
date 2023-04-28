@@ -21,11 +21,11 @@ const NavBar = ({ className }) => {
                         <Link
                             href={item.href}
                             className={`flex flex-col items-center rounded-lg gap-y-1 px-1 py-2 transition-colors 
-                            duration-200 
+                            duration-200 border border-white
                             ${
                                 router.pathname === item.href
                                     ? "bg-white !text-blue-700"
-                                    : "hover:text-blue-700 hover:bg-white border border-white text-white"
+                                    : "hover:text-blue-700 hover:bg-white text-white"
                             } `}
                         >
                             {item.icon}

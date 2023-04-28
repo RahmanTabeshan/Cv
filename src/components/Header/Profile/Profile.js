@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Profile = ({ className }) => {
     return (
         <div
-            className={`relative flex flex-col items-center gap-y-3 border border-blue-600 rounded-lg px-4 pt-4 pb-36 
-            transition-all duration-1000 ${className}`}
+            className={`relative flex flex-col items-center bg-white gap-y-3 rounded-lg px-4 pt-4 pb-36 
+            transition-all duration-1000 shadow-[0_3px_16px_-5px] shadow-black ${className}`}
         >
             <div className="relative w-64 h-64 rounded-full overflow-hidden ring-2 ring-blue-700 ring-offset-[5px] m-2">
                 <Image

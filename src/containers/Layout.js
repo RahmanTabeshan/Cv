@@ -17,8 +17,8 @@ const Layout = ({ children }) => {
         <>
             <Header />
             <main
-                className={`relative h-[37rem] w-[60rem] rounded-l-lg shadow-[0_3px_16px_-5px] shadow-black -mr-5 
-                transition-all duration-1000 bg-white ${
+                className={`relative h-[37rem] w-[60rem] rounded-l-lg shadow-[0_3px_16px_-5px] shadow-black dark:shadow-white 
+                -mr-5 transition-all duration-1000 bg-white dark:text-white dark:bg-neutral-700 ${
                     load 
                 }`}
             >

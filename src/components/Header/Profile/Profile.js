@@ -5,10 +5,11 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 const Profile = ({ className }) => {
     return (
         <div
-            className={`relative flex flex-col items-center bg-white gap-y-3 rounded-lg px-4 pt-4 pb-36 
-            transition-all duration-1000 shadow-[0_3px_16px_-5px] shadow-black ${className}`}
+            className={`relative flex flex-col items-center bg-white dark:bg-neutral-700 gap-y-3 rounded-lg px-4 pt-4 pb-36 
+            transition-all duration-1000 shadow-myShadow shadow-black dark:shadow-white dark:text-white ${className}`}
         >
-            <div className="relative w-64 h-64 rounded-full overflow-hidden ring-2 ring-blue-700 ring-offset-[5px] m-2">
+            <div className="relative w-64 h-64 rounded-full overflow-hidden ring-2 ring-blue-700
+            dark:ring-blue-400 ring-offset-[5px] m-2">
                 <Image
                     src="/Img/myPhoto.png"
                     alt="Profile Image"
@@ -24,18 +25,18 @@ const Profile = ({ className }) => {
                     <div className="text-base mb-4">
                         <p className="font-bold font-vazir">رحمان تابشان هستم </p>
                     </div>
-                    <div className="text-sm text-neutral-700 mt-1">
-                        <p className="font-vazir-fa">28 سال سن دارم</p>
+                    <div className="text-sm text-neutral-700 dark:text-white mt-1">
+                        <p className="">توسعه دهنده فرانت </p>
                     </div>
-                    <div className="text-sm text-neutral-700 mt-1">
-                        <p className="">توسعه دهنده فرانت هستم</p>
+                    <div className="text-sm text-neutral-700 dark:text-white mt-1">
+                        <p className="">بیش از 2 سال سابقه آموزش و کار</p>
                     </div>
                 </div>
                 <div className="flex flex-wrap mt-6">
                     <ul className="flex gap-4">
                         <li>
                             <Link href="https://www.linkedin.com/in/Rahmantabeshan" target="_blank">
-                                <FaLinkedin className="w-6 h-6 text-blue-900" />
+                                <FaLinkedin className="w-6 h-6 text-blue-900 dark:text-blue-400" />
                             </Link>
                         </li>
                         <li>

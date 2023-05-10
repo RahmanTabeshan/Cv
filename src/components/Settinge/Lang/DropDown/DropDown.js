@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import DropItem from "./DropItem/DropItem";
+import Overlay from "@/components/Common/Overlay/Overlay";
 
 const DropDown = () => {
     const dropList = [
@@ -37,36 +38,39 @@ const DropDown = () => {
         setOpen(false);
     };
     return (
-        <div className="relative">
-            <div
-                className="flex w-full h-9 cursor-pointer items-center gap-x-2"
-                data-value={dropDown.value}
-                onClick={() => setOpen(!open)}
-            >
-                <div className="relative w-9 h-5">
-                    <Image
-                        src={dropDown.src}
-                        alt={dropDown.value}
-                        fill
-                        className="object-cover"
-                    />
+        <>
+            {open && <Overlay />}
+            <div className="relative z-20">
+                <div
+                    className="flex w-full h-9 cursor-pointer items-center gap-x-2"
+                    data-value={dropDown.value}
+                    onClick={() => setOpen(!open)}
+                >
+                    <div className="relative w-9 h-5">
+                        <Image
+                            src={dropDown.src}
+                            alt={dropDown.value}
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
                 </div>
+                <ul
+                    className={`${
+                        !open ? "hidden" : "flex flex-col gap-y-2"
+                    } absolute top-9 w-full z-20`}
+                >
+                    {dropList.map((item) => (
+                        <DropItem
+                            key={item.id}
+                            item={item}
+                            filtredRoute={filtredRoute}
+                            clickHandle={clickHandle}
+                        />
+                    ))}
+                </ul>
             </div>
-            <ul
-                className={`${
-                    !open ? "hidden" : "flex flex-col gap-y-2"
-                } absolute top-9 w-full`}
-            >
-                {dropList.map((item) => (
-                    <DropItem
-                        key={item.id}
-                        item={item}
-                        filtredRoute={filtredRoute}
-                        clickHandle={clickHandle}
-                    />
-                ))}
-            </ul>
-        </div>
+        </>
     );
 };
 

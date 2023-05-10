@@ -1,15 +1,9 @@
 import { NavList } from "@/utils/List/List";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const NavBar = ({ className }) => {
     const router = useRouter();
-
-    useEffect(()=>{
-        console.log("navbar")
-    },[])
-
     return (
         <nav
             className={`relative w-max border rounded-lg px-2 py-4 bg-blue-700 h-max transition-all duration-1000 

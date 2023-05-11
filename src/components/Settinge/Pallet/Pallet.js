@@ -26,7 +26,7 @@ const Pallet = () => {
                     className="flex justify-center cursor-pointer w-1/2 h-10"
                     onClick={() => setTheme(item.title)}
                 >
-                    <div className={`w-3/4 aspect-[1/1] h-max bg-[${item.color}] rounded-full`}></div>
+                    <div className={`w-3/4 aspect-[1/1] h-max rounded-full`} style={{backgroundColor:item.color}}></div>
                 </li>
             ))}
         </ul>

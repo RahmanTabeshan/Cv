@@ -8,7 +8,7 @@ const Profile = ({ className }) => {
             className={`relative flex flex-col items-center bg-white dark:bg-neutral-700 gap-y-3 rounded-lg px-4 pt-4 pb-36 
             transition-all duration-1000 shadow-myShadow shadow-black dark:shadow-white dark:text-white ${className}`}
         >
-            <div className="relative w-64 h-64 rounded-full overflow-hidden ring-2 ring-blue-700
+            <div className="relative w-64 h-64 rounded-full overflow-hidden ring-2 ring-primary
             dark:ring-blue-400 ring-offset-[5px] m-2">
                 <Image
                     src="/Img/myPhoto.png"

@@ -6,7 +6,7 @@ const NavBar = ({ className }) => {
     const router = useRouter();
     return (
         <nav
-            className={`relative w-max border rounded-lg px-2 py-4 bg-blue-700 h-max transition-all duration-1000 
+            className={`relative w-max border rounded-lg px-2 py-4 bg-primary h-max transition-all duration-1000 
             ${className}`}
         >
             <ul className="flex flex-col gap-y-3">
@@ -18,8 +18,8 @@ const NavBar = ({ className }) => {
                             duration-200 border border-white
                             ${
                                 router.pathname === item.href
-                                    ? "bg-white !text-blue-700"
-                                    : "hover:text-blue-700 hover:bg-white text-white"
+                                    ? "bg-white !text-primary"
+                                    : "hover:text-primary hover:bg-white text-white"
                             } `}
                         >
                             {item.icon}

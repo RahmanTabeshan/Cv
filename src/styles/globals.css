@@ -28,3 +28,12 @@
     font-family: "Vazir_Fa";
     padding: 10px;
 }
+
+@layer components {
+    .input_focus{
+        @apply outline outline-1 outline-primary
+    }
+    .input_admin{
+        @apply py-3 px-2 rounded-lg border border-neutral-200 font-medium
+    }
+}

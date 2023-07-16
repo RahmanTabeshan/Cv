@@ -20,21 +20,27 @@ module.exports = {
         createThemes({
             Blue: {
                 primary: "#1d4ed8",
+                secondary : "#153796" ,
             },
             Red: {
                 primary: "#b91c1c",
+                secondary : "#7d1010" ,
             },
             Green: {
                 primary: "#15803d",
+                secondary : "#0f592a" ,
             },
             Orange: {
                 primary: "#c2410c",
+                secondary : "#922f06" ,
             },
             Emerald: {
                 primary: "#047857",
+                secondary : "#014c37" ,
             },
             Rose: {
                 primary: "#be123c",
+                secondary : "#810c29" ,
             },
         }),
     ],

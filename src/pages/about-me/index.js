@@ -2,27 +2,10 @@ import Card from "@/components/AboutMe/InfoCard/Card";
 import SkillCard from "@/components/AboutMe/SkillCard/SkillCard";
 import MainHead from "@/components/Common/MainHead";
 import Layout from "@/containers/Layout";
+import axios from "axios";
 import { FaUser } from "react-icons/fa";
 
-const skills = [
-    { id: 1, title: "Html5" },
-    { id: 2, title: "Css3" },
-    { id: 3, title: "TailwindCss" },
-    { id: 4, title: "Mui" },
-    { id: 5, title: "AntD" },
-    { id: 6, title: "Mantine" },
-    { id: 7, title: "JavaScript" },
-    { id: 8, title: "Jquery" },
-    { id: 9, title: "React" },
-    { id: 10, title: "Redux" },
-    { id: 11, title: "Redux ToolKit" },
-    { id: 12, title: "Context" },
-    { id: 13, title: "React Query" },
-    { id: 14, title: "Next" },
-    { id: 15, title: "Next-Auth" },
-];
-
-const AbouteMe = () => {
+const AbouteMe = ({skills}) => {
     return (
         <Layout>
             <div className="flex flex-col gap-y-3 w-full h-full p-5 pr-6 ">
@@ -61,7 +44,7 @@ const AbouteMe = () => {
                         <h1 className="font-bold text-lg">مهارت ها : </h1>
                         <div className="flex flex-wrap gap-x-2 gap-y-4 mt-2 items-center">
                             {skills.map((skill) => (
-                                <SkillCard key={skill.id} title={skill.title} />
+                                <SkillCard key={skill._id} title={skill.en_title} />
                             ))}
                             <SkillCard title="و بسیاری دیگر از کتابخانه ها و فریمورک های مرتبط" />
                         </div>
@@ -86,3 +69,15 @@ const AbouteMe = () => {
 };
 
 export default AbouteMe;
+
+export async function getServerSideProps() {
+
+    const {data} = await axios.get("http://localhost:3232/skills") ;
+
+    return {
+        props:{
+            skills : data.skills 
+        } 
+    }
+}
+

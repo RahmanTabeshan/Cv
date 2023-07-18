@@ -12,13 +12,13 @@
     body {
         @apply !font-vazir dark:bg-slate-900;
     }
-}
-
-/* @media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
+    .input_focus {
+        @apply outline outline-1 outline-primary;
     }
-} */
+    .input_admin {
+        @apply py-3 px-2 rounded-lg border border-neutral-200 font-medium;
+    }
+}
 
 #__next {
     display: flex;
@@ -29,11 +29,10 @@
     padding: 10px;
 }
 
-@layer components {
-    .input_focus{
-        @apply outline outline-1 outline-primary
-    }
-    .input_admin{
-        @apply py-3 px-2 rounded-lg border border-neutral-200 font-medium
-    }
+#nprogress .bar {
+    --tw-bg-opacity: 1 !important;
+    background-color: hsl(
+        var(--twc-primary) / var(--twc-primary-opacity, var(--tw-bg-opacity))
+    ) !important;
+    height: 6px !important;
 }

@@ -1,8 +1,8 @@
+import http from "@/Services/http";
 import Card from "@/components/AboutMe/InfoCard/Card";
 import SkillCard from "@/components/AboutMe/SkillCard/SkillCard";
 import MainHead from "@/components/Common/MainHead";
 import Layout from "@/containers/Layout";
-import axios from "axios";
 import { FaUser } from "react-icons/fa";
 
 const AbouteMe = ({skills}) => {
@@ -72,7 +72,7 @@ export default AbouteMe;
 
 export async function getServerSideProps() {
 
-    const {data} = await axios.get("http://localhost:3232/skills") ;
+    const {data} = await http.get("/skills") ;
 
     return {
         props:{

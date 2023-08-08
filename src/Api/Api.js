@@ -1,4 +1,4 @@
-import * as Auth from "./Auth" ; ;
+import * as Auth from "./Auth" ;
 
 const Api = {
     Auth

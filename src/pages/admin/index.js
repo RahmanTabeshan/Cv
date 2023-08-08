@@ -4,6 +4,7 @@ import Input from "@/components/Admin/AdminLogin/Input";
 import axios from "axios";
 import cookieParser from "cookie-parser";
 import { Field, Form, Formik } from "formik";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { Oval } from "react-loader-spinner";
 import * as Yup from "yup";
@@ -29,8 +30,11 @@ const Admin = () => {
 
     const onSubmit = async (values) => {
         try {
-            const data = await login.mutateAsync(values);
-            Router.push("/admin/dashboard");
+            const data = await login.mutateAsync(values, {
+                onSuccess: () => {
+                    Router.push("/admin/dashboard");
+                },
+            });
         } catch (error) {
             console.log(error);
         }
@@ -62,6 +66,11 @@ const Admin = () => {
                                 type="password"
                                 name="Password"
                             />
+                            <div>
+                                <Link href="/admin/register">
+                                    حساب کاربری ندارید ؟ ثبت نام
+                                </Link>
+                            </div>
                             <button
                                 type="submit"
                                 disabled={
@@ -111,6 +120,7 @@ export async function getServerSideProps(ctx) {
             },
         };
     }
+
     return {
         props: {
             data: null,

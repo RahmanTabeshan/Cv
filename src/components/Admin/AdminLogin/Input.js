@@ -1,6 +1,7 @@
 import { ErrorMessage, Field } from "formik";
 
 const Input = ({ name, type, label }) => {
+
     return (
         <div className="flex flex-col gap-y-3">
             <label htmlFor={name}>{label}</label>

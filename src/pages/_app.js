@@ -8,31 +8,32 @@ import NProgress from "nprogress";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import "nprogress/nprogress.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 function App({ Component, pageProps }) {
-    
     const { store, props } = wrapper.useWrappedStore(pageProps);
     const queryClient = new QueryClient();
-    const router = useRouter() ;
-  
-  useEffect(() => {
-    const handleRouteStart = () => NProgress.start();
-    const handleRouteDone = () => NProgress.done();
-    
-    NProgress.configure({showSpinner : false})
+    const router = useRouter();
 
-    router.events.on("routeChangeStart", handleRouteStart);
-    router.events.on("routeChangeComplete", handleRouteDone);
-    router.events.on("routeChangeError", handleRouteDone);
- 
-    return () => {
-      // Make sure to remove the event handler on unmount!
-      router.events.off("routeChangeStart", handleRouteStart);
-      router.events.off("routeChangeComplete", handleRouteDone);
-      router.events.off("routeChangeError", handleRouteDone);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    useEffect(() => {
+        const handleRouteStart = () => NProgress.start();
+        const handleRouteDone = () => NProgress.done();
+
+        NProgress.configure({ showSpinner: false });
+
+        router.events.on("routeChangeStart", handleRouteStart);
+        router.events.on("routeChangeComplete", handleRouteDone);
+        router.events.on("routeChangeError", handleRouteDone);
+
+        return () => {
+            // Make sure to remove the event handler on unmount!
+            router.events.off("routeChangeStart", handleRouteStart);
+            router.events.off("routeChangeComplete", handleRouteDone);
+            router.events.off("routeChangeError", handleRouteDone);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -42,6 +43,13 @@ function App({ Component, pageProps }) {
             <Setting />
             <Provider store={store}>
                 <Component {...props} />
+                <ToastContainer
+                    position="top-right"
+                    pauseOnHover
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop
+                />
             </Provider>
         </QueryClientProvider>
     );

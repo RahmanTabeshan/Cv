@@ -20,6 +20,10 @@
     }
 }
 
+.Toastify__toast-body{
+    @apply font-vazir
+}
+
 #__next {
     display: flex;
     align-items: center;

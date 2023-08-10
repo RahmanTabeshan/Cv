@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import http from "@/Services/http";
 import { useRef } from "react";
+import Link from "next/link";
 
 const initialValues = {
     Name: "",
@@ -74,17 +75,15 @@ const AdminSignup = () => {
         try {
             const { data } = await Register.mutateAsync(value);
 
-            toast.success(data.message, { theme: "colored" });
+            toast.success(data.message);
         } catch (error) {
-            toast.error(error.response.data.message || error.message, {
-                theme: "colored",
-            });
+            toast.error(error.response.data.message || error.message);
             console.clear();
         }
     };
 
     return (
-        <div className="flex flex-col gap-y-5 bg-neutral-100 border border-neutral-300 shadow-2xl px-10 py-5 rounded-lg">
+        <div className="flex flex-col gap-y-5 bg-neutral-100 border border-neutral-300 shadow-2xl px-10 py-5 rounded-lg min-w-[600px]">
             <div className="border-2 border-primary rounded-lg px-32 py-3 bg-primary">
                 <h1 className="text-white text-2xl font-bold">
                     ثبت نام مدیر سایت
@@ -127,6 +126,11 @@ const AdminSignup = () => {
                                 type="password"
                                 name="RePassword"
                             />
+                            <div>
+                                <Link href="/admin">
+                                    حساب کاربری دارید ؟ ورود
+                                </Link>
+                            </div>
                             <button
                                 type="submit"
                                 disabled={

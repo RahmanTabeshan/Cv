@@ -1,12 +1,13 @@
 import AdminLogin from "@/Hooks/ReactQuery/AdminLogin";
 import http from "@/Services/http";
 import Input from "@/components/Admin/AdminLogin/Input";
-import axios from "axios";
-import cookieParser from "cookie-parser";
-import { Field, Form, Formik } from "formik";
+import { AdminInfo } from "@/reduxtoolkit/AdminInfo/AdminSlice";
+import { Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Oval } from "react-loader-spinner";
+import { useDispatch} from "react-redux";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 const initialValues = {
@@ -26,17 +27,27 @@ const validationSchema = Yup.object({
 const Admin = () => {
     const Router = useRouter();
 
-    const login = AdminLogin();
+    const dispatch = useDispatch() ;
 
+    const login = AdminLogin();
     const onSubmit = async (values) => {
         try {
-            const data = await login.mutateAsync(values, {
+            const { data } = await login.mutateAsync(values, {
                 onSuccess: () => {
+                    dispatch(AdminInfo(data.user)) ;
                     Router.push("/admin/dashboard");
                 },
             });
         } catch (error) {
-            console.log(error);
+            const data = error.response.data;
+            if (data.status === 404) {
+                toast.error(data.message);
+            } else if (data.status === 400) {
+                toast.warning(data.message);
+            } else {
+                toast.error(error.message);
+            }
+            console.clear();
         }
     };
 

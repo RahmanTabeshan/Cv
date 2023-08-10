@@ -1,11 +1,17 @@
 import http from "@/Services/http";
+import DashboardLayout from "@/components/Dashboard/Layout";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+    const Admin = useSelector(state => state.AdminInfo.Admin) ;
+
     return (
-        <div>
-            <h1>Dashboard Page</h1>
-        </div>
+        <DashboardLayout>
+            <main>
+                
+            </main>
+        </DashboardLayout>
     );
 };
 

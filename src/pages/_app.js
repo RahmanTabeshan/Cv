@@ -49,6 +49,7 @@ function App({ Component, pageProps }) {
                     autoClose={5000}
                     hideProgressBar={false}
                     newestOnTop
+                    theme="colored"
                 />
             </Provider>
         </QueryClientProvider>

@@ -10,6 +10,9 @@ module.exports = {
             boxShadow: {
                 myShadow: "0 3px 16px -5px",
             },
+            gridTemplateColumns : {
+                "repeat" : "repeat(auto-fill , minmax(0,230px))"
+            } ,
         },
         fontFamily: {
             vazir: "Vazir_En",

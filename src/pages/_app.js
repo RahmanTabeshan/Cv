@@ -8,15 +8,38 @@ import NProgress from "nprogress";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import "nprogress/nprogress.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Api from "@/Api/Api";
+import { AdminInfo } from "@/reduxtoolkit/AdminInfo/AdminSlice";
+import { dateNow } from "@/utils/DateNow";
+import { AddDate } from "@/reduxtoolkit/DateNow/DateNowSlice";
 
-function App({ Component, pageProps }) {
+function App({ Component, ...pageProps}) {
+
+    const {dateNow} = pageProps ;
+
     const { store, props } = wrapper.useWrappedStore(pageProps);
+
     const queryClient = new QueryClient();
+
     const router = useRouter();
 
+    const LoadUser = async ()=>{
+        try {
+            const {data} = await Api.Auth.authToken() ;
+            store.dispatch(AdminInfo(data.user)) ;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
+
+        store.dispatch(AddDate({day:dateNow.day , date:dateNow.date})) ;
+
+        LoadUser() ;
+
         const handleRouteStart = () => NProgress.start();
         const handleRouteDone = () => NProgress.done();
 
@@ -55,5 +78,11 @@ function App({ Component, pageProps }) {
         </QueryClientProvider>
     );
 }
-
+App.getInitialProps = async ()=>{
+    return {
+        dateNow:JSON.parse(JSON.stringify(dateNow)) ,
+    }
+}
 export default App;
+
+

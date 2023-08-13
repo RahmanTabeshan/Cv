@@ -1,14 +1,17 @@
+
 import { createSlice } from "@reduxjs/toolkit" 
 import { HYDRATE } from "next-redux-wrapper";
 
-const AdminSlice = createSlice({
-    name: "AdminInfo",
+const DateSlice = createSlice({
+    name: "Date",
     initialState: {
-        Admin :{} ,
+        day : "" ,
+        date : "" ,
     },
     reducers: {
-        AdminInfo: (state,action) => {
-            state.Admin = action.payload ;
+        AddDate: (state,action) => {
+            state.day = action.payload.day ;
+            state.date = action.payload.date ;
         },
     },
     extraReducers: (builder) => {
@@ -21,6 +24,6 @@ const AdminSlice = createSlice({
     },
 }) ;
 
-export default AdminSlice.reducer ;
+export default DateSlice.reducer ;
 
-export const {AdminInfo} = AdminSlice.actions ;
+export const {AddDate} = DateSlice.actions ;

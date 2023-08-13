@@ -3,13 +3,18 @@ import DropDown from "./Lang/DropDown/DropDown";
 import dynamic from "next/dynamic";
 import Pallet from "./Pallet/Pallet";
 import { useState } from "react";
+import Link from "next/link";
 const Mode = dynamic(() => import("./Mode/Mode"), { ssr: false });
 const Setting = () => {
     const [open, setOpen] = useState(false);
 
     return (
         <>
-            <div className={` flex fixed transition-[left] duration-300 ${open ? "-left-2" : "left-[-188px]"} top-5 p-2 z-[1000] `}>
+            <div
+                className={` flex fixed transition-[left] duration-300 ${
+                    open ? "-left-2" : "left-[-188px]"
+                } top-5 p-2 z-[1000] `}
+            >
                 <button
                     className="bg-white dark:bg-neutral-700 dark:text-white border h-max
                     border-neutral-300 border-l-0 dark:border-0 rounded-r-lg p-3 shadow-myShadow
@@ -36,6 +41,18 @@ const Setting = () => {
                         <h1>Theme : </h1>
                         <Pallet />
                     </div>
+                    <Link
+                        href="/admin"
+                        className="bg-primary border border-primary text-white text-center px-3 py-2 rounded-xl transition-colors duration-200 hover:bg-secondary"
+                    >
+                        پنل مدیریت
+                    </Link>
+                    <Link
+                        href="/"
+                        className="bg-primary border border-primary text-white text-center px-3 py-2 rounded-xl transition-colors duration-200 hover:bg-secondary"
+                    >
+                        صفحه اصلی
+                    </Link>
                 </div>
             </div>
         </>

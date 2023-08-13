@@ -32,12 +32,9 @@ const Admin = () => {
     const login = AdminLogin();
     const onSubmit = async (values) => {
         try {
-            const { data } = await login.mutateAsync(values, {
-                onSuccess: () => {
-                    dispatch(AdminInfo(data.user)) ;
-                    Router.push("/admin/dashboard");
-                },
-            });
+            const { data } = await login.mutateAsync(values);
+            dispatch(AdminInfo(data.user)) ;
+            Router.push("/admin/dashboard");
         } catch (error) {
             const data = error.response.data;
             if (data.status === 404) {

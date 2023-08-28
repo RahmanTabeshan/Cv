@@ -6,6 +6,7 @@ import Layout from "@/containers/Layout";
 import { FaUser } from "react-icons/fa";
 
 const AbouteMe = ({skills}) => {
+    console.log(skills);
     return (
         <Layout>
             <div className="flex flex-col gap-y-3 w-full h-full p-5 pr-6 ">
@@ -43,7 +44,7 @@ const AbouteMe = ({skills}) => {
                     <div className="flex flex-col mt-5">
                         <h1 className="font-bold text-lg">مهارت ها : </h1>
                         <div className="flex flex-wrap gap-x-2 gap-y-4 mt-2 items-center">
-                            {skills.map((skill) => (
+                            {skills?.map((skill) => (
                                 <SkillCard key={skill._id} title={skill.en_title} />
                             ))}
                             <SkillCard title="و بسیاری دیگر از کتابخانه ها و فریمورک های مرتبط" />

@@ -15,9 +15,7 @@ import { AdminInfo } from "@/reduxtoolkit/AdminInfo/AdminSlice";
 import { dateNow } from "@/utils/DateNow";
 import { AddDate } from "@/reduxtoolkit/DateNow/DateNowSlice";
 
-function App({ Component, ...pageProps}) {
-
-    const {dateNow} = pageProps ;
+function App({ Component, dateNow , ...pageProps}) {
 
     const { store, props } = wrapper.useWrappedStore(pageProps);
 
@@ -65,7 +63,7 @@ function App({ Component, ...pageProps}) {
             </Head>
             <Setting />
             <Provider store={store}>
-                <Component {...props} />
+                <Component {...props.pageProps} />
                 <ToastContainer
                     position="top-right"
                     pauseOnHover

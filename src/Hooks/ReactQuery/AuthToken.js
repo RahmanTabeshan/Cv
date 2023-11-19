@@ -1,5 +1,5 @@
 import Api from "@/Api/Api";
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 
 const fetcher = (data) => {
     return Api.Auth.authToken();

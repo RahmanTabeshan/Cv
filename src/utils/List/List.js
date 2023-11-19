@@ -53,4 +53,11 @@ export const DashboardList = [
         href : "/admin/dashboard/Admins" ,
         icon: <HomeIcon className="Dashboard_Nav_Icon" />,
     },
+    {
+        id:3 ,
+        title : "اطلاعات شخصی" , 
+        en_title : "Personal Info" ,
+        href : "/admin/dashboard/personal-info" ,
+        icon: <HomeIcon className="Dashboard_Nav_Icon" />,
+    },
 ]

@@ -1,7 +1,7 @@
 import MainHead from "@/components/Common/MainHead";
 import Layout from "@/containers/Layout";
 import { AiFillHome } from "react-icons/ai";
-import { Cursor, Typewriter } from "react-simple-typewriter";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Home() {
     return (

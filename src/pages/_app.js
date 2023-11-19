@@ -14,29 +14,34 @@ import Api from "@/Api/Api";
 import { AdminInfo } from "@/reduxtoolkit/AdminInfo/AdminSlice";
 import { dateNow } from "@/utils/DateNow";
 import { AddDate } from "@/reduxtoolkit/DateNow/DateNowSlice";
+import 'react-loading-skeleton/dist/skeleton.css' ;
 
-function App({ Component, dateNow , ...pageProps}) {
-
+function App({ Component, dateNow, ...pageProps }) {
     const { store, props } = wrapper.useWrappedStore(pageProps);
 
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                refetchOnWindowFocus: false,
+            },
+        },
+    });
 
     const router = useRouter();
 
-    const LoadUser = async ()=>{
+    const LoadUser = async () => {
         try {
-            const {data} = await Api.Auth.authToken() ;
-            store.dispatch(AdminInfo(data.user)) ;
+            const { data } = await Api.Auth.authToken();
+            store.dispatch(AdminInfo(data.user));
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     useEffect(() => {
+        store.dispatch(AddDate({ day: dateNow.day, date: dateNow.date }));
 
-        store.dispatch(AddDate({day:dateNow.day , date:dateNow.date})) ;
-
-        LoadUser() ;
+        LoadUser();
 
         const handleRouteStart = () => NProgress.start();
         const handleRouteDone = () => NProgress.done();
@@ -76,11 +81,9 @@ function App({ Component, dateNow , ...pageProps}) {
         </QueryClientProvider>
     );
 }
-App.getInitialProps = async ()=>{
+App.getInitialProps = async () => {
     return {
-        dateNow:JSON.parse(JSON.stringify(dateNow)) ,
-    }
-}
+        dateNow: JSON.parse(JSON.stringify(dateNow)),
+    };
+};
 export default App;
-
-

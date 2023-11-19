@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const Profile = ({ className }) => {
+const    Profile = ({ className }) => {
     return (
         <div
             className={`relative flex flex-col items-center bg-white dark:bg-neutral-700 gap-y-3 rounded-lg px-4 pt-4 pb-36 

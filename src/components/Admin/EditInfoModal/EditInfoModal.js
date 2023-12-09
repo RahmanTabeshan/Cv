@@ -4,8 +4,9 @@ import { Oval } from "react-loader-spinner";
 import { useEffect, useRef, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import EditInfo from "@/Hooks/ReactQuery/EditInfo";
-import { QueryClient, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 const EditInfoModal = ({ name, label, type, value }) => {
     const [showModal, setShowModal] = useState(false);
@@ -18,17 +19,42 @@ const EditInfoModal = ({ name, label, type, value }) => {
         [name]: value.value,
     };
 
-    const { mutateAsync , isLoading } = EditInfo();
+    let validationSchema;
+    switch (name) {
+        case "Name/fa": {
+            validationSchema = Yup.object({
+                "Name/fa": Yup.string()
+                    .required("لطفا نام خود را وارد کنید")
+                    .min(3, "نام نمیتواند کمتر از سه حرف باشد")
+                    .matches(/[\u0600-\u06FF\s]+$/ , "نام خود را به صورت فارسی وارد کنید"),
+            });
+            break;
+        }
 
+        case "Name/en": {
+            validationSchema = Yup.object({
+                "Name/en": Yup.string()
+                    .required("لطفا نام خود را وارد کنید")
+                    .min(3, "نام نمیتواند کمتر از سه حرف باشد")
+                    .matches(/^[a-zA-Z\s]+$/ , "نام خود را به صورت انگلیسی وارد کنید"),
+            });
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    const { mutateAsync, isLoading } = EditInfo();
     const submitHandler = async (value) => {
         try {
-            const {data} = await mutateAsync({ url: name, data: value });
+            const { data } = await mutateAsync({ url: name, data: value });
             query.invalidateQueries("Personal-Info");
-            setShowModal(false) ;
-            toast.success(data.message)
+            setShowModal(false);
+            toast.success(data.message);
         } catch (error) {
             toast.error(error.response.data.message);
-            console.clear() ;
+            console.clear();
         }
     };
 
@@ -88,7 +114,11 @@ const EditInfoModal = ({ name, label, type, value }) => {
                     <h1 className="text-white text-2xl font-bold">ویرایش اطلاعات</h1>
                 </div>
                 <div className="mt-5">
-                    <Formik initialValues={initialValues} onSubmit={submitHandler}>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={submitHandler}
+                    >
                         {() => {
                             return (
                                 <Form className="flex flex-col gap-y-5 text-primary font-bold">

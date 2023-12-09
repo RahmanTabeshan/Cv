@@ -2,6 +2,7 @@ import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import FileUploader from "../FileUploader/FileUploader";
+import Image from "next/image";
 
 const ProfileImage = ({ info, loading }) => {
     const [show, setShow] = useState(false);
@@ -15,12 +16,24 @@ const ProfileImage = ({ info, loading }) => {
                 }}
             >
                 {loading ? (
-                    <Skeleton circle className="w-full h-full" containerClassName="flex w-full h-full" />
+                    <Skeleton
+                        circle
+                        className="w-full h-full"
+                        containerClassName="flex w-full h-full"
+                    />
                 ) : (
-                    <UserCircleIcon className="bg-white rounded-full" />
+                    <Image
+                        src={info.profileImage.url}
+                        alt="ProfileImage"
+                        className="object-cover rounded-full"
+                        fill
+                        loading="eager"
+                    />
                 )}
             </div>
-            {show ? <FileUploader setShow={setShow} imageUrl={info.profileImage.url} id={info._id} /> : null}
+            {show ? (
+                <FileUploader setShow={setShow} imageUrl={info.profileImage.url} id={info._id} />
+            ) : null}
         </>
     );
 };

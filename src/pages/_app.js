@@ -76,6 +76,7 @@ function App({ Component, dateNow, ...pageProps }) {
                     hideProgressBar={false}
                     newestOnTop
                     theme="colored"
+                    closeButton={false}
                 />
             </Provider>
         </QueryClientProvider>

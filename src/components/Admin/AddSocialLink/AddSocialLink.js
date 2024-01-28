@@ -2,98 +2,48 @@ import { Form, Formik } from "formik";
 import Input from "../AdminLogin/Input";
 import { Oval } from "react-loader-spinner";
 import { useEffect, useRef, useState } from "react";
-import { CiEdit } from "react-icons/ci";
-import EditInfo from "@/Hooks/ReactQuery/EditInfo";
+import { MdAddBox } from "react-icons/md";
 import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import AddLink from "@/Hooks/ReactQuery/AddLink";
 
-const EditInfoModal = ({ name, label, type, value }) => {
+const AddSocialLink = ({ id }) => {
     const [showModal, setShowModal] = useState(false);
     const modalCurrent = useRef();
     const overlayCurrent = useRef();
     const query = useQueryClient();
 
     const initialValues = {
-        id: value.id,
-        [name]: value.value,
+        title_fa: "",
+        title_en: "",
+        link: "",
     };
 
-    let validationSchema;
-    switch (name) {
-        case "Name/fa": {
-            validationSchema = Yup.object({
-                "Name/fa": Yup.string()
-                    .required("لطفا نام خود را وارد کنید")
-                    .min(3, "نام نمیتواند کمتر از سه حرف باشد")
-                    .matches(/[\u0600-\u06FF\s]+$/, "نام خود را به صورت فارسی وارد کنید"),
-            });
-            break;
-        }
+    const validationSchema = Yup.object({
+        title_fa: Yup.string()
+            .required("لطفا عنوان را وارد کنید")
+            .matches(/[\u0600-\u06FF\s]+$/, "عنوان را به صورت فارسی وارد کنید"),
+        title_en: Yup.string()
+            .required("لطفا عنوان را وارد کنید")
+            .matches(/^[a-zA-Z\s]+$/, "عنوان را به صورت انگلیسی وارد کنید"),
+        link: Yup.string()
+            .required("لطفا آدرس مورد نظر را وارد کنید")
+            .matches(/^(https:\/\/)/, "لینک مورد نظر باید با https:// شروع شود"),
+    });
 
-        case "Name/en": {
-            validationSchema = Yup.object({
-                "Name/en": Yup.string()
-                    .required("لطفا نام خود را وارد کنید")
-                    .min(3, "نام نمیتواند کمتر از سه حرف باشد")
-                    .matches(/^[a-zA-Z\s]+$/, "نام خود را به صورت انگلیسی وارد کنید"),
-            });
-            break;
-        }
+    const { mutateAsync, isLoading } = AddLink();
 
-        case "phone": {
-            validationSchema = Yup.object({
-                phone: Yup.string()
-                    .required("لطفا شماره همراه خود را وارد کنید")
-                    .matches(
-                        /^(09)(0[1-5]|[1-3][0-9]|2[0-2]|9[0-3]|96)[0-9]{7}$/,
-                        "لطفا شماره همراه خود را به شکل صحیح وارد کنید"
-                    ),
-            });
-            break;
-        }
-
-        case "numProject": {
-            validationSchema = Yup.object({
-                numProject: Yup.number()
-                    .typeError("لطفا مقدار ورودی را به صورت عددی وارد کنید")
-                    .required("مقدار ورودی نمیتواند خالی باشد"),
-            });
-            break;
-        }
-
-        case "condition": {
-            validationSchema = Yup.object({
-                condition: Yup.string()
-                    .oneOf(["آزاد", "مشغول به کار", "استخدام"], "لطفا مقدار مشخص شده را وارد کنید")
-                    .required("مقدار ورودی نمیتواند خالی باشد"),
-            });
-            break;
-        }
-
-        case "socialLink/Telegram": {
-            validationSchema = Yup.object({
-                "socialLink/Telegram": Yup.string()
-                    .required("مقدار ورودی نمیتواند خالی باشد")
-                    .matches(/^(https:\/\/)/, "لینک مورد نظر باید با https:// شروع شود"),
-            });
-            break;
-        }
-
-        default:
-            break;
-    }
-
-    const { mutateAsync, isLoading } = EditInfo();
-    const submitHandler = async (value) => {
+    const submitHandler = async (values , action) => {
+        values.id = id;
         try {
-            const { data } = await mutateAsync({ url: name, data: value });
+            const { data } = await mutateAsync(values);
             query.invalidateQueries("Personal-Info");
-            setShowModal(false);
             toast.success(data.message);
+            action.resetForm() ;
+            setShowModal(false);
         } catch (error) {
             toast.error(error.response.data.message);
-            console.clear();
         }
     };
 
@@ -131,7 +81,7 @@ const EditInfoModal = ({ name, label, type, value }) => {
                 setTimeout(() => {
                     modal.classList.add("hidden");
                     overlay.classList.add("hidden");
-                }, 700);
+                }, 500);
             }
         }
     }, [showModal]);
@@ -150,7 +100,7 @@ const EditInfoModal = ({ name, label, type, value }) => {
                 className={`hidden fixed border z-[10000] border-neutral-300 rounded-lg shadow-xl bg-neutral-100 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mr-auto p-5 transition-all duration-700`}
             >
                 <div className="border-2 border-primary rounded-lg px-32 py-3 bg-primary">
-                    <h1 className="text-white text-2xl font-bold">ویرایش اطلاعات</h1>
+                    <h1 className="text-white text-2xl font-bold">افزودن لینک</h1>
                 </div>
                 <div className="mt-5">
                     <Formik
@@ -161,7 +111,9 @@ const EditInfoModal = ({ name, label, type, value }) => {
                         {() => {
                             return (
                                 <Form className="flex flex-col gap-y-5 text-primary font-bold">
-                                    <Input label={label} type={type} name={name} />
+                                    <Input label="عنوان فارسی :" type="text" name="title_fa" />
+                                    <Input label="عنوان انگلیسی :" type="text" name="title_en" />
+                                    <Input label="آدرس :" type="text" name="link" />
                                     <button
                                         type="submit"
                                         className="bg-primary rounded-lg text-white py-3 text-xl transition-color ease-in-out duration-300 hover:bg-secondary disabled:transition-none disabled:hover:bg-primary h-14 mt-5 "
@@ -177,7 +129,7 @@ const EditInfoModal = ({ name, label, type, value }) => {
                                                 secondaryColor="white"
                                             />
                                         ) : (
-                                            "ویرایش"
+                                            "افزودن"
                                         )}
                                     </button>
                                 </Form>
@@ -186,11 +138,15 @@ const EditInfoModal = ({ name, label, type, value }) => {
                     </Formik>
                 </div>
             </div>
-            <button onClick={() => setShowModal(true)}>
-                <CiEdit className="w-8 h-8" />
+            <button
+                className="absolute left-1 top-5"
+                title="افزودن لینک"
+                onClick={() => setShowModal(true)}
+            >
+                <MdAddBox className="w-6 h-6 text-green-800" />
             </button>
         </>
     );
 };
 
-export default EditInfoModal;
+export default AddSocialLink;

@@ -1,21 +1,56 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const    Profile = ({ className }) => {
+const Profile = ({ className, personData }) => {
+    console.log(personData);
+    const { profileImage: img, Name, exprience, socialLink } = personData;
+    const socialIcon = [
+        { title: "Linkedin", icon: <FaLinkedin /> },
+        { title: "Github", icon: <FaGithub /> },
+    ];
+
+    socialLink.map((item) => {
+        const icon = socialIcon.find((i) => i.title === item.title_en);
+        item.icon = icon.icon;
+        return item;
+    });
+
+    const router = useRouter();
+    const isHome = router.pathname === "/";
+    const [hide, setHide] = useState("");
+    useEffect(() => {
+        if (router.pathname !== "/" && window.innerWidth > 960) {
+            setHide("");
+        } else {
+            setHide("none");
+        }
+        window.onresize = () => {
+            console.log(window.innerWidth);
+            if (router.pathname !== "/" && window.innerWidth > 960) {
+                console.log(window.innerWidth);
+                setHide("");
+            } else {
+                setHide("none");
+            }
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    console.log(hide);
     return (
         <div
-            className={`relative flex flex-col items-center bg-white dark:bg-neutral-700 gap-y-3 rounded-lg px-4 pt-4 pb-36 
-            transition-all duration-1000 shadow-myShadow shadow-black dark:shadow-white dark:text-white ${className}`}
+            style={{ display: hide }}
+            className={`smd:relative flex flex-col items-center w-full h-full bg-white dark:bg-neutral-700 gap-y-3 
+            rounded-lg px-4 pt-4 pb-36 transition-all duration-1000 shadow-myShadow shadow-black dark:shadow-white
+            dark:text-white ${className} `}
         >
-            <div className="relative w-64 h-64 rounded-full overflow-hidden ring-2 ring-primary
-            dark:ring-blue-400 ring-offset-[5px] m-2">
-                <Image
-                    src="/Img/myPhoto.png"
-                    alt="Profile Image"
-                    fill
-                    className="object-cover"
-                />
+            <div
+                className="relative max-w-xs w-full smd:w-full aspect-square rounded-full overflow-hidden ring-2 ring-primary
+              dark:ring-blue-400 ring-offset-[5px] m-2"
+            >
+                <Image src={img.url} alt="Profile Image" fill className="object-cover" />
             </div>
             <div className="flex flex-col items-center">
                 <div className="flex flex-col items-center mt-2">
@@ -23,27 +58,30 @@ const    Profile = ({ className }) => {
                         <p className="font-bold">سلام</p>
                     </div>
                     <div className="text-base mb-4">
-                        <p className="font-bold font-vazir">رحمان تابشان هستم </p>
+                        <p className="font-bold font-vazir">{Name.fa} هستم</p>
                     </div>
                     <div className="text-sm text-neutral-700 dark:text-white mt-1">
                         <p className="">توسعه دهنده فرانت </p>
                     </div>
                     <div className="text-sm text-neutral-700 dark:text-white mt-1">
-                        <p className="">بیش از 2 سال سابقه آموزش و کار</p>
+                        <p className="">بیش از {exprience.value} سال سابقه آموزش و کار</p>
                     </div>
                 </div>
                 <div className="flex flex-wrap mt-6">
                     <ul className="flex gap-4">
-                        <li>
-                            <Link href="https://www.linkedin.com/in/Rahmantabeshan" target="_blank">
-                                <FaLinkedin className="w-6 h-6 text-blue-900 dark:text-blue-400" />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="https://github.com/RahmanTabeshan" target="_blank">
-                                <FaGithub className="w-6 h-6" />
-                            </Link>
-                        </li>
+                        {socialLink.map((item) => (
+                            <li key={item._id}>
+                                <Link href={item.value} target="_blank">
+                                    <item.icon.type
+                                        className={`w-6 h-6 ${
+                                            item.title_en === "Linkedin"
+                                                ? "text-blue-900 dark:text-blue-400"
+                                                : null
+                                        } `}
+                                    />
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>

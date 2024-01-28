@@ -1,4 +1,5 @@
 import PersonalData from "@/Hooks/ReactQuery/PersonalInfo";
+import AddSocialLink from "@/components/Admin/AddSocialLink/AddSocialLink";
 import EditInfoModal from "@/components/Admin/EditInfoModal/EditInfoModal";
 import PersonItem from "@/components/Admin/PersonInfo/PersonItem";
 import ProfileImage from "@/components/Admin/ProfileImage/ProfileImage";
@@ -69,34 +70,41 @@ const PersonalInfo = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <button className="border-2 border-primary rounded-xl py-3 px-4 text-sm font-bold bg-primary text-white transition-colors duration-200 hover:bg-secondary">
+                                        افزودن اطلاعات
+                                    </button>
+                                </div>
                             </div>
                             <div className="grid grid-cols-repeat justify-around gap-y-8 p-10 ">
                                 {isLoading
-                                    ? Array(8)
+                                    ? Array(4)
                                           .fill(1)
                                           .map((key, index) => (
                                               <PersonItem
                                                   key={index}
                                                   loading={isLoading || isFetching}
-                                                  initialValue={
-                                                    {value  : null }
-                                                  }
+                                                  initialValue={{ value: null }}
                                               />
                                           ))
                                     : ObjToArr(data.data.info).map((info, index) => (
-                                          <PersonItem
-                                              key={index}
-                                              loading={isLoading || isFetching}
-                                              name={Object.keys(info)[0]}
-                                              title={
-                                                  Object.values(info)[0].title ||
-                                                  Object.values(info)[0][0].parentTitle
-                                              }
-                                              initialValue={{
-                                                  id: data.data.info._id,
-                                                  value: info[Object.keys(info)],
-                                              }}
-                                          />
+                                          <div key={index} className="relative">
+                                              <PersonItem
+                                                  loading={isLoading || isFetching}
+                                                  name={Object.keys(info)[0]}
+                                                  title={
+                                                      Object.values(info)[0].title ||
+                                                      Object.values(info)[0][0].parentTitle
+                                                  }
+                                                  initialValue={{
+                                                      id: data.data.info._id,
+                                                      value: info[Object.keys(info)],
+                                                  }}
+                                              />
+                                              {Object.keys(info)[0] === "socialLink" ? (
+                                                  <AddSocialLink id={data.data.info._id} />
+                                              ) : null}
+                                          </div>
                                       ))}
                             </div>
                         </div>

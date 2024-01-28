@@ -13,6 +13,9 @@ module.exports = {
             gridTemplateColumns : {
                 "repeat" : "repeat(auto-fill , minmax(0,230px))"
             } ,
+            screens:{
+                "smd" : "960px"
+            }
         },
         fontFamily: {
             vazir: "Vazir_En",

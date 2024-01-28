@@ -14,9 +14,11 @@ import Api from "@/Api/Api";
 import { AdminInfo } from "@/reduxtoolkit/AdminInfo/AdminSlice";
 import { dateNow } from "@/utils/DateNow";
 import { AddDate } from "@/reduxtoolkit/DateNow/DateNowSlice";
-import 'react-loading-skeleton/dist/skeleton.css' ;
+import "react-loading-skeleton/dist/skeleton.css";
+import http from "@/Services/http";
+import Layout from "@/containers/Layout";
 
-function App({ Component, dateNow, ...pageProps }) {
+function App({ Component, dateNow, personData, ...pageProps }) {
     const { store, props } = wrapper.useWrappedStore(pageProps);
 
     const queryClient = new QueryClient({
@@ -61,6 +63,8 @@ function App({ Component, dateNow, ...pageProps }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const adminSection = router.pathname.split("/")[1] === "admin";
+
     return (
         <QueryClientProvider client={queryClient}>
             <Head>
@@ -68,7 +72,13 @@ function App({ Component, dateNow, ...pageProps }) {
             </Head>
             <Setting />
             <Provider store={store}>
-                <Component {...props.pageProps} />
+                {!adminSection ? (
+                    <Layout personData={personData}>
+                        <Component {...props.pageProps} />
+                    </Layout>
+                ) : (
+                    <Component {...props.pageProps} />
+                )}
                 <ToastContainer
                     position="top-right"
                     pauseOnHover
@@ -83,7 +93,9 @@ function App({ Component, dateNow, ...pageProps }) {
     );
 }
 App.getInitialProps = async () => {
+    const { data } = await http.get("/personal");
     return {
+        personData: data.info,
         dateNow: JSON.parse(JSON.stringify(dateNow)),
     };
 };

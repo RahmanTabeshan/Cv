@@ -7,16 +7,19 @@
 
 @layer components {
     .NavIcon {
-        @apply w-6 h-6;
+        @apply w-4 lg:w-6 h-4 lg:h-6;
     }
     body {
-        @apply !font-vazir dark:bg-slate-900 flex justify-center items-center;
+        @apply !font-vazir dark:bg-slate-900 flex justify-center items-center pb-24 smd:pb-0;
     }
     .input_focus {
         @apply outline outline-1 outline-primary;
     }
     .input_admin {
         @apply py-3 px-2 rounded-lg border border-neutral-200 font-medium;
+    }
+    #__next {
+        @apply flex flex-col smd:flex-row items-center justify-center min-h-screen font-vazir-fa p-3 w-full
     }
 }
 
@@ -25,20 +28,7 @@
 }
 
 .Toastify__toast-body > div:last-child{
-    @apply w-max ;
-}
-.Toastify__toast-body > div:last-child{
     direction: rtl ;
-}
-
-#__next {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    font-family: "Vazir_Fa";
-    padding: 10px;
-    width: 100% ;
 }
 
 #nprogress .bar {

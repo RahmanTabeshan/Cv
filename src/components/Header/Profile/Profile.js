@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Profile = ({ className, personData }) => {
-    console.log(personData);
     const { profileImage: img, Name, exprience, socialLink } = personData;
     const socialIcon = [
         { title: "Linkedin", icon: <FaLinkedin /> },
@@ -19,32 +18,11 @@ const Profile = ({ className, personData }) => {
     });
 
     const router = useRouter();
-    const isHome = router.pathname === "/";
-    const [hide, setHide] = useState("");
-    useEffect(() => {
-        if (router.pathname !== "/" && window.innerWidth > 960) {
-            setHide("");
-        } else {
-            setHide("none");
-        }
-        window.onresize = () => {
-            console.log(window.innerWidth);
-            if (router.pathname !== "/" && window.innerWidth > 960) {
-                console.log(window.innerWidth);
-                setHide("");
-            } else {
-                setHide("none");
-            }
-        };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    console.log(hide);
     return (
         <div
-            style={{ display: hide }}
-            className={`smd:relative flex flex-col items-center w-full h-full bg-white dark:bg-neutral-700 gap-y-3 
+            className={`smd:relative flex-col items-center w-full h-full bg-white dark:bg-neutral-700 gap-y-3 
             rounded-lg px-4 pt-4 pb-36 transition-all duration-1000 shadow-myShadow shadow-black dark:shadow-white
-            dark:text-white ${className} `}
+            dark:text-white ${className} ${router.pathname === "/" ? "flex" : "hidden smd:flex" } `}
         >
             <div
                 className="relative max-w-xs w-full smd:w-full aspect-square rounded-full overflow-hidden ring-2 ring-primary

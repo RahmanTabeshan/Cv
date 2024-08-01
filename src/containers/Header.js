@@ -1,7 +1,7 @@
 import NavBar from "@/components/Header/NavBar/NavBar";
 import Profile from "@/components/Header/Profile/Profile";
 import { load_true } from "@/reduxtoolkit/LoadState/LoadStateSlice";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = ({personData}) => {
